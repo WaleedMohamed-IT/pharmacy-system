@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>Pharmacy System</title>
+  <style>
+    body {
+      font-family: "Tahoma", sans-serif;
+      background-color: #f9f9f9;
+      margin: 20px;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #ecf0f1;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>قائمة الأدوية</h1>
+  <ul id="medicines-list"></ul>
+
+  <h1>قائمة المستخدمين</h1>
+  <ul id="users-list"></ul>
+
+  <script>
+    // جلب الأدوية من السيرفر
+    async function loadMedicines() {
+      const response = await fetch('http://localhost:3000/medicines');
+      const medicines = await response.json();
+
+      const list = document.getElementById('medicines-list');
+      medicines.forEach(med => {
+        const item = document.createElement('li');
+        item.textContent = `${med.name} - السعر: ${med.price} - الكمية: ${med.quantity}`;
+        list.appendChild(item);
+      });
+    }
+
+    // جلب المستخدمين من السيرفر
+    async function loadUsers() {
+      const response = await fetch('http://localhost:3000/users');
+      const users = await response.json();
+
+      const list = document.getElementById('users-list');
+      users.forEach(user => {
+        const item = document.createElement('li');
+        item.textContent = `${user.name} - البريد: ${user.email}`;
+        list.appendChild(item);
+      });
+    }
+
+    // تشغيل الدوال عند فتح الصفحة
+    loadMedicines();
+    loadUsers();
+  </script>
+</body>
+</html>

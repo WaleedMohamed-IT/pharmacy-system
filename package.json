@@ -1,0 +1,19 @@
+{
+  "name": "pharmacy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@hono/node-server": "^1.19.12",
+    "express": "^5.2.1",
+    "open": "^11.0.0",
+    "pg": "^8.20.0"
+  }
+}
