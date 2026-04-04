@@ -4,139 +4,33 @@
   <meta charset="UTF-8">
   <title>Pharmacy System</title>
   <style>
-    body {
-      font-family: Tahoma, Arial, sans-serif;
-      margin: 0;
-      background-color: #eafaf1;
-      direction: rtl;
-    }
-    header {
-      background-color: #16a085;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 24px;
-    }
-    .login-box {
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      width: 300px;
-      text-align: center;
-      margin: 50px auto;
-    }
-    .login-box input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-    .login-box button {
-      background-color: #16a085;
-      color: white;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      width: 100%;
-      cursor: pointer;
-    }
-    .login-box button:hover {
-      background-color: #0e6655;
-    }
-    .error {
-      color: red;
-      margin-top: 10px;
-      display: none;
-    }
-    nav {
-      background-color: #1abc9c;
-      display: flex;
-      justify-content: center;
-    }
-    nav a {
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      background-color: #0e6655;
-    }
-    .container {
-      padding: 20px;
-    }
-    h2 {
-      color: #2c3e50;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-      background-color: white;
-    }
-    table, th, td {
-      border: 1px solid #ddd;
-    }
-    th, td {
-      padding: 12px;
-      text-align: center;
-    }
-    th {
-      background-color: #1abc9c;
-      color: white;
-    }
-    table tr:hover {
-      background-color: #d1f2eb;
-    }
-    table tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-    .dashboard {
-      display: flex;
-      justify-content: space-around;
-      margin: 20px 0;
-    }
-    .card {
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
-      width: 40%;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .card h3 {
-      margin: 0;
-      color: #16a085;
-    }
-    .card p {
-      font-size: 20px;
-      font-weight: bold;
-      color: #2c3e50;
-    }
-    #welcome-message {
-      text-align:center; 
-      margin:20px; 
-      font-size:20px; 
-      color:#2c3e50;
-    }
-    .logout {
-      text-align:center;
-      margin:20px;
-    }
-    .logout button {
-      background-color:#e74c3c;
-      color:white;
-      padding:10px 20px;
-      border:none;
-      border-radius:5px;
-      cursor:pointer;
-    }
-    .logout button:hover {
-      background-color:#c0392b;
-    }
+    body {font-family: Tahoma, Arial, sans-serif; margin:0; background:#eafaf1; direction:rtl;}
+    header {background:#16a085; color:white; padding:20px; text-align:center; font-size:24px;}
+    .login-box {background:white; padding:30px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.2); width:300px; text-align:center; margin:50px auto;}
+    .login-box input {width:70%; padding:10px; margin:10px 0; border:1px solid #ddd; border-radius:5px;}
+    .login-box button {background:#16a085; color:white; padding:10px; border:none; border-radius:5px; width:100%; cursor:pointer;}
+    .login-box button:hover {background:#0e6655;}
+    .error {color:red; margin-top:10px; display:none;}
+    nav {background:#1abc9c; display:flex; justify-content:center;}
+    nav a {color:white; padding:14px 20px; text-decoration:none; font-weight:bold;}
+    nav a:hover {background:#0e6655;}
+    .container {padding:20px;}
+    h2 {color:#2c3e50;}
+    table {width:100%; border-collapse:collapse; margin-top:15px; background:white;}
+    table, th, td {border:1px solid #ddd;}
+    th, td {padding:12px; text-align:center;}
+    th {background:#1abc9c; color:white;}
+    table tr:hover {background:#d1f2eb;}
+    table tr:nth-child(even) {background:#f9f9f9;}
+    .dashboard {display:flex; justify-content:space-around; margin:20px 0;}
+    .card {background:white; border:1px solid #ddd; border-radius:8px; padding:20px; width:40%; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+    .card h3 {margin:0; color:#16a085;}
+    .card p {font-size:20px; font-weight:bold; color:#2c3e50;}
+    #welcome-message {text-align:center; margin:20px; font-size:20px; color:#2c3e50;}
+    .logout {text-align:center; margin:20px;}
+    .logout button {background:#e74c3c; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;}
+    .logout button:hover {background:#c0392b;}
+    .toggle-btn {cursor:pointer; margin-left:5px; color:#16a085; font-weight:bold;}
   </style>
 </head>
 <body>
@@ -144,15 +38,18 @@
     <h1>💊 Pharmacy System</h1>
   </header>
 
-  <!-- صندوق تسجيل الدخول -->
+  <!-- تسجيل الدخول -->
   <div id="login-section" class="login-box">
     <h2>تسجيل الدخول</h2>
-    <input type="password" id="password" placeholder="أدخل كلمة المرور">
+    <div style="display:flex; align-items:center; justify-content:center;">
+      <input type="password" id="password" placeholder="أدخل كلمة المرور">
+      <span class="toggle-btn" onclick="togglePassword()">👁️</span>
+    </div>
     <button onclick="login()">دخول</button>
     <p class="error" id="error-msg">كلمة المرور غير صحيحة</p>
   </div>
 
-  <!-- محتوى الموقع بعد الدخول -->
+  <!-- المحتوى بعد الدخول -->
   <div id="main-section" style="display:none;">
     <nav>
       <a href="#medicines">💊 الأدوية</a>
@@ -220,45 +117,54 @@
         welcomeDiv.textContent = "👤 مرحبًا بك أيها المستخدم العزيز";
       }
 
-      // جلب قائمة الأدوية
-      fetch('/medicines')
-        .then(response => response.json())
-        .then(data => {
-          const table = document.querySelector("#medicines-table");
-          const count = document.querySelector("#medicine-count");
-          count.textContent = data.length;
-          data.forEach(med => {
-            const row = `<tr>
-              <td>${med.name}</td>
-              <td>${med.quantity}</td>
-              <td>${med.price}</td>
-            </tr>`;
-            table.innerHTML += row;
-          });
-        });
+      // بيانات تجريبية للأدوية
+      const medicinesData = [
+        {"name":"Paracetamol","price":10,"quantity":50},
+        {"name":"Amoxicillin","price":20,"quantity":30}
+      ];
+      const medTable = document.querySelector("#medicines-table");
+      const medCount = document.querySelector("#medicine-count");
+      medCount.textContent = medicinesData.length;
+      medicinesData.forEach(med => {
+        const row = `<tr>
+          <td>${med.name}</td>
+          <td>${med.quantity}</td>
+          <td>${med.price}</td>
+        </tr>`;
+        medTable.innerHTML += row;
+      });
 
-      // جلب قائمة المستخدمين
-      fetch('/users')
-        .then(response => response.json())
-        .then(data => {
-          const table = document.querySelector("#users-table");
-          const count = document.querySelector("#user-count");
-          count.textContent = data.length;
-          data.forEach(user => {
-            const row = `<tr>
-              <td>${user.name}</td>
-              <td>${user.email}</td>
-              <td>${user.role}</td>
-            </tr>`;
-            table.innerHTML += row;
-          });
-        });
+      // بيانات تجريبية للمستخدمين
+      const usersData = [
+        {"name":"وليد","email":"waleed@example.com","role":"Admin"},
+        {"name":"أحمد","email":"ahmed@example.com","role":"User"}
+      ];
+      const userTable = document.querySelector("#users-table");
+      const userCount = document.querySelector("#user-count");
+      userCount.textContent = usersData.length;
+      usersData.forEach(user => {
+        const row = `<tr>
+          <td>${user.name}</td>
+          <td>${user.email}</td>
+          <td>${user.role}</td>
+        </tr>`;
+        userTable.innerHTML += row;
+      });
     }
 
     function logout() {
       document.getElementById("main-section").style.display = "none";
       document.getElementById("login-section").style.display = "block";
       document.getElementById("password").value = "";
+    }
+
+    function togglePassword() {
+      const passField = document.getElementById("password");
+      if(passField.type === "password") {
+        passField.type = "text";
+      } else {
+        passField.type = "password";
+      }
     }
   </script>
 </body>
