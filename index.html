@@ -7,11 +7,11 @@
     body {
       font-family: Tahoma, Arial, sans-serif;
       margin: 0;
-      background-color: #eafaf1; /* خلفية فاتحة */
+      background-color: #eafaf1;
       direction: rtl;
     }
     header {
-      background-color: #16a085; /* أخضر طبي */
+      background-color: #16a085;
       color: white;
       padding: 20px;
       text-align: center;
@@ -55,10 +55,33 @@
       color: white;
     }
     table tr:hover {
-      background-color: #d1f2eb; /* تأثير عند المرور */
+      background-color: #d1f2eb;
     }
     table tr:nth-child(even) {
-      background-color: #f9f9f9; /* تظليل الصفوف بالتناوب */
+      background-color: #f9f9f9;
+    }
+    .dashboard {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+    .card {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      width: 40%;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .card h3 {
+      margin: 0;
+      color: #16a085;
+    }
+    .card p {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2c3e50;
     }
   </style>
 </head>
@@ -70,6 +93,19 @@
     <a href="#medicines">💊 الأدوية</a>
     <a href="#users">👤 المستخدمين</a>
   </nav>
+
+  <!-- Dashboard -->
+  <div class="dashboard">
+    <div class="card">
+      <h3>عدد الأدوية</h3>
+      <p id="medicine-count">0</p>
+    </div>
+    <div class="card">
+      <h3>عدد المستخدمين</h3>
+      <p id="user-count">0</p>
+    </div>
+  </div>
+
   <div class="container">
     <h2 id="medicines">قائمة الأدوية</h2>
     <table id="medicines-table">
@@ -96,6 +132,8 @@
       .then(response => response.json())
       .then(data => {
         const table = document.querySelector("#medicines-table");
+        const count = document.querySelector("#medicine-count");
+        count.textContent = data.length; // عدد الأدوية
         data.forEach(med => {
           const row = `<tr>
             <td>${med.name}</td>
@@ -111,6 +149,8 @@
       .then(response => response.json())
       .then(data => {
         const table = document.querySelector("#users-table");
+        const count = document.querySelector("#user-count");
+        count.textContent = data.length; // عدد المستخدمين
         data.forEach(user => {
           const row = `<tr>
             <td>${user.name}</td>
