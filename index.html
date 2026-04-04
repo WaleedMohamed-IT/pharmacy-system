@@ -83,6 +83,12 @@
       font-weight: bold;
       color: #2c3e50;
     }
+    #welcome-message {
+      text-align:center; 
+      margin:20px; 
+      font-size:20px; 
+      color:#2c3e50;
+    }
   </style>
 </head>
 <body>
@@ -93,6 +99,9 @@
     <a href="#medicines">💊 الأدوية</a>
     <a href="#users">👤 المستخدمين</a>
   </nav>
+
+  <!-- رسالة ترحيب -->
+  <div id="welcome-message"></div>
 
   <!-- Dashboard -->
   <div class="dashboard">
@@ -127,13 +136,26 @@
   </div>
 
   <script>
+    // رسالة الترحيب حسب الدور
+    const params = new URLSearchParams(window.location.search);
+    const role = params.get("role");
+    const welcomeDiv = document.getElementById("welcome-message");
+
+    if(role === "admin") {
+      welcomeDiv.textContent = "👑 مرحبًا بك يا مدير النظام (Admin)";
+    } else if(role === "user") {
+      welcomeDiv.textContent = "👤 مرحبًا بك أيها المستخدم العزيز";
+    } else {
+      welcomeDiv.textContent = "💊 مرحبًا بك في نظام الصيدلية";
+    }
+
     // جلب قائمة الأدوية
     fetch('https://pharmacy-system-production-f1ea.up.railway.app/medicines')
       .then(response => response.json())
       .then(data => {
         const table = document.querySelector("#medicines-table");
         const count = document.querySelector("#medicine-count");
-        count.textContent = data.length; // عدد الأدوية
+        count.textContent = data.length;
         data.forEach(med => {
           const row = `<tr>
             <td>${med.name}</td>
@@ -150,7 +172,7 @@
       .then(data => {
         const table = document.querySelector("#users-table");
         const count = document.querySelector("#user-count");
-        count.textContent = data.length; // عدد المستخدمين
+        count.textContent = data.length;
         data.forEach(user => {
           const row = `<tr>
             <td>${user.name}</td>
