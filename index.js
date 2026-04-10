@@ -5,9 +5,9 @@ const { Pool } = require("pg");
 const app = express();
 const port = process.env.PORT || 8080;
 
-// إعداد الاتصال بقاعدة البيانات PostgreSQL
+// الاتصال بقاعدة البيانات باستخدام DATABASE_URL من البيئة
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_URL || "postgres://username:password@host:5432/database",
   ssl: { rejectUnauthorized: false }
 });
 
@@ -21,11 +21,8 @@ app.get("/", (req, res) => {
 });
 
 // -------------------- الأدوية --------------------
-
-// إضافة دواء جديد
 app.post("/addMedicine", async (req, res) => {
   try {
-    // تحويل القيم للتأكد من النوع الصحيح
     const name = req.body.name?.toString() || "";
     const qty = parseInt(req.body.qty) || 0;
     const price = req.body.price?.toString() || "";
@@ -37,12 +34,11 @@ app.post("/addMedicine", async (req, res) => {
 
     res.json({ success: true, message: "تم إضافة الدواء بنجاح!" });
   } catch (err) {
-    console.error("خطأ أثناء إضافة الدواء:", err.message);
+    console.error("خطأ أثناء إضافة الدواء:", err);
     res.status(500).json({ success: false, message: "حدث خطأ أثناء إضافة الدواء" });
   }
 });
 
-// جلب قائمة الأدوية
 app.get("/medicines", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM medicines");
@@ -54,8 +50,6 @@ app.get("/medicines", async (req, res) => {
 });
 
 // -------------------- المستخدمين --------------------
-
-// تسجيل مستخدم جديد
 app.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
   try {
@@ -65,12 +59,11 @@ app.post("/register", async (req, res) => {
     );
     res.json({ success: true, message: "تم تسجيل المستخدم بنجاح!" });
   } catch (err) {
-    console.error("خطأ أثناء تسجيل المستخدم:", err.message);
+    console.error("خطأ أثناء تسجيل المستخدم:", err);
     res.status(500).json({ success: false, message: "حدث خطأ أثناء تسجيل المستخدم" });
   }
 });
 
-// جلب قائمة المستخدمين
 app.get("/users", async (req, res) => {
   try {
     const result = await pool.query("SELECT id, username, email FROM users");
@@ -84,5 +77,6 @@ app.get("/users", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
 
 
