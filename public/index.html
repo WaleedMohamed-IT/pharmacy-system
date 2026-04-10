@@ -87,24 +87,37 @@
       document.querySelector("#medicineForm").style.display = "block";
     });
 
-    // زر حفظ الدواء الجديد
-    document.querySelector("#saveMedicine").addEventListener("click", function() {
+    // زر حفظ الدواء الجديد (يرسل للـ Backend)
+    document.querySelector("#saveMedicine").addEventListener("click", async function() {
       const name = document.querySelector("#medName").value;
       const qty = document.querySelector("#medQty").value;
       const price = document.querySelector("#medPrice").value;
 
       if(name && qty && price){
-        const table = document.querySelector("#medicineTable");
-        const row = table.insertRow();
-        row.insertCell(0).innerText = name;
-        row.insertCell(1).innerText = qty;
-        row.insertCell(2).innerText = price;
+        try {
+          const response = await fetch("/addMedicine", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, qty, price })
+          });
+          const result = await response.json();
+          alert(result.message);
 
-        alert("تم إضافة الدواء بنجاح!");
-        document.querySelector("#medicineForm").style.display = "none";
-        document.querySelector("#medName").value = "";
-        document.querySelector("#medQty").value = "";
-        document.querySelector("#medPrice").value = "";
+          if(result.success){
+            const table = document.querySelector("#medicineTable");
+            const row = table.insertRow();
+            row.insertCell(0).innerText = name;
+            row.insertCell(1).innerText = qty;
+            row.insertCell(2).innerText = price;
+
+            document.querySelector("#medicineForm").style.display = "none";
+            document.querySelector("#medName").value = "";
+            document.querySelector("#medQty").value = "";
+            document.querySelector("#medPrice").value = "";
+          }
+        } catch (err) {
+          alert("حدث خطأ أثناء الاتصال بالسيرفر");
+        }
       } else {
         alert("من فضلك أدخل جميع البيانات!");
       }
@@ -113,3 +126,4 @@
 
 </body>
 </html>
+
