@@ -41,7 +41,7 @@
 
   <div class="container" id="medicines">
     <h2>قائمة الأدوية</h2>
-    <button>➕ إضافة دواء جديد</button>
+    <button id="addMedicine">➕ إضافة دواء جديد</button>
     <table>
       <tr><th>اسم الدواء</th><th>الكمية</th><th>السعر</th></tr>
       <tr><td>باراسيتامول</td><td>50</td><td>10 جنيه</td></tr>
@@ -62,6 +62,21 @@
     <h2>التقارير</h2>
     <p>📊 هنا يمكن عرض الرسوم البيانية أو تحميل ملفات CSV/PDF للتقارير.</p>
   </div>
+
+  <!-- JavaScript لتشغيل الأزرار -->
+  <script>
+    // زر تسجيل خروج
+    document.querySelector(".logout").addEventListener("click", function() {
+      alert("تم تسجيل الخروج بنجاح!");
+      // لاحقًا نربطها بصفحة تسجيل الدخول أو backend
+    });
+
+    // زر إضافة دواء جديد
+    document.querySelector("#addMedicine").addEventListener("click", function() {
+      alert("هنا سيظهر نموذج لإضافة دواء جديد");
+      // لاحقًا نربطها بقاعدة البيانات أو form
+    });
+  </script>
 
 </body>
 </html>
