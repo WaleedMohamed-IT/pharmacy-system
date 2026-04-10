@@ -15,6 +15,9 @@
     table { width:100%; border-collapse:collapse; margin-top:20px; }
     th, td { border:1px solid #ccc; padding:10px; text-align:center; }
     th { background:#e0e0e0; }
+    .form-box { background:#fff; padding:15px; margin-top:15px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); display:none; }
+    .form-box input { margin:5px; padding:8px; }
+    .form-box button { margin-top:10px; padding:8px 15px; }
   </style>
 </head>
 <body>
@@ -42,7 +45,16 @@
   <div class="container" id="medicines">
     <h2>قائمة الأدوية</h2>
     <button id="addMedicine">➕ إضافة دواء جديد</button>
-    <table>
+
+    <!-- نموذج إضافة دواء جديد -->
+    <div class="form-box" id="medicineForm">
+      <label>اسم الدواء: <input type="text" id="medName"></label><br>
+      <label>الكمية: <input type="number" id="medQty"></label><br>
+      <label>السعر: <input type="text" id="medPrice"></label><br>
+      <button id="saveMedicine">💾 حفظ</button>
+    </div>
+
+    <table id="medicineTable">
       <tr><th>اسم الدواء</th><th>الكمية</th><th>السعر</th></tr>
       <tr><td>باراسيتامول</td><td>50</td><td>10 جنيه</td></tr>
       <tr><td>أموكسيسيلين</td><td>30</td><td>25 جنيه</td></tr>
@@ -68,13 +80,34 @@
     // زر تسجيل خروج
     document.querySelector(".logout").addEventListener("click", function() {
       alert("تم تسجيل الخروج بنجاح!");
-      // لاحقًا نربطها بصفحة تسجيل الدخول أو backend
     });
 
     // زر إضافة دواء جديد
     document.querySelector("#addMedicine").addEventListener("click", function() {
-      alert("هنا سيظهر نموذج لإضافة دواء جديد");
-      // لاحقًا نربطها بقاعدة البيانات أو form
+      document.querySelector("#medicineForm").style.display = "block";
+    });
+
+    // زر حفظ الدواء الجديد
+    document.querySelector("#saveMedicine").addEventListener("click", function() {
+      const name = document.querySelector("#medName").value;
+      const qty = document.querySelector("#medQty").value;
+      const price = document.querySelector("#medPrice").value;
+
+      if(name && qty && price){
+        const table = document.querySelector("#medicineTable");
+        const row = table.insertRow();
+        row.insertCell(0).innerText = name;
+        row.insertCell(1).innerText = qty;
+        row.insertCell(2).innerText = price;
+
+        alert("تم إضافة الدواء بنجاح!");
+        document.querySelector("#medicineForm").style.display = "none";
+        document.querySelector("#medName").value = "";
+        document.querySelector("#medQty").value = "";
+        document.querySelector("#medPrice").value = "";
+      } else {
+        alert("من فضلك أدخل جميع البيانات!");
+      }
     });
   </script>
 
