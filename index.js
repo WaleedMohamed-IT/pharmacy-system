@@ -24,15 +24,20 @@ app.get("/", (req, res) => {
 
 // إضافة دواء جديد
 app.post("/addMedicine", async (req, res) => {
-  const { name, qty, price } = req.body;
   try {
+    // تحويل القيم للتأكد من النوع الصحيح
+    const name = req.body.name?.toString() || "";
+    const qty = parseInt(req.body.qty) || 0;
+    const price = req.body.price?.toString() || "";
+
     await pool.query(
       "INSERT INTO medicines (name, quantity, price) VALUES ($1, $2, $3)",
-      [name, qty, price.toString()] // نخزن السعر كنص لتفادي الخطأ
+      [name, qty, price]
     );
+
     res.json({ success: true, message: "تم إضافة الدواء بنجاح!" });
   } catch (err) {
-    console.error(err);
+    console.error("خطأ أثناء إضافة الدواء:", err.message);
     res.status(500).json({ success: false, message: "حدث خطأ أثناء إضافة الدواء" });
   }
 });
@@ -60,7 +65,7 @@ app.post("/register", async (req, res) => {
     );
     res.json({ success: true, message: "تم تسجيل المستخدم بنجاح!" });
   } catch (err) {
-    console.error(err);
+    console.error("خطأ أثناء تسجيل المستخدم:", err.message);
     res.status(500).json({ success: false, message: "حدث خطأ أثناء تسجيل المستخدم" });
   }
 });
@@ -79,4 +84,5 @@ app.get("/users", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
 
