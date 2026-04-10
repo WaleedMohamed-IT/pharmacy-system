@@ -5,7 +5,7 @@ const { Pool } = require("pg");
 const app = express();
 const port = process.env.PORT || 8080;
 
-// إعداد قاعدة البيانات PostgreSQL
+// إعداد الاتصال بقاعدة البيانات PostgreSQL
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false }
@@ -28,7 +28,7 @@ app.post("/addMedicine", async (req, res) => {
   try {
     await pool.query(
       "INSERT INTO medicines (name, quantity, price) VALUES ($1, $2, $3)",
-      [name, qty, price]
+      [name, qty, price.toString()] // نخزن السعر كنص لتفادي الخطأ
     );
     res.json({ success: true, message: "تم إضافة الدواء بنجاح!" });
   } catch (err) {
@@ -79,3 +79,4 @@ app.get("/users", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
