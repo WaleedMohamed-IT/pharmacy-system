@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 app.use(cors());
@@ -13,10 +14,17 @@ app.use(session({
   saveUninitialized: true
 }));
 
+// عرض الملفات الثابتة من مجلد public
+app.use(express.static(path.join(__dirname, "public")));
+
+// عرض الصفحة الرئيسية (index.html داخل public)
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 // تسجيل الدخول
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
-  // تحقق بسيط (يمكن ربطه بقاعدة البيانات لاحقًا)
   if (username === "admin" && password === "1234") {
     req.session.user = username;
     res.json({ message: "✅ تم تسجيل الدخول بنجاح" });
@@ -42,8 +50,10 @@ app.get("/protected", (req, res) => {
   }
 });
 
-app.listen(8080, () => console.log("✅ Server running on port 8080"));
-
+// تشغيل السيرفر
+app.listen(process.env.PORT || 8080, () => {
+  console.log("✅ Server running on port " + (process.env.PORT || 8080));
+});
 
 
 
