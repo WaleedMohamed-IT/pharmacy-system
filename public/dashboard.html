@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>لوحة التحكم</title>
+  <style>
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      margin-top: 50px;
+    }
+    h1 {
+      color: #007bff;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 20px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>مرحباً بك في لوحة التحكم الخاصة بنظام الصيدلية</h1>
+  <p>هنا ستظهر بيانات المشروع والتقارير.</p>
+  <button onclick="logout()">خروج</button>
+
+  <script>
+    async function logout() {
+      const response = await fetch("/logout", { method: "POST" });
+      const result = await response.json();
+      if (result.message) {
+        alert(result.message);
+        window.location.href = "/";
+      }
+    }
+  </script>
+</body>
+</html>
