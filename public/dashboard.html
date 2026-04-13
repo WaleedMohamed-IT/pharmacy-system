@@ -2,20 +2,35 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>القائمة الرئيسية</title>
+  <title>Pharmacy System</title>
   <link rel="stylesheet" href="style.css"> <!-- ربط بالملف الموحد -->
 </head>
 <body>
-  <h2>القائمة الرئيسية</h2>
+  <!-- الهيدر -->
+  <header>
+    💊 Pharmacy System
+  </header>
 
+  <!-- شريط التنقل -->
+  <nav>
+    <a href="#">الصيدلية</a>
+    <a href="suppliers.html">الموردين</a>
+    <a href="#">الدعم الفني</a>
+    <a href="#">اداريات</a>
+  </nav>
+
+  <!-- رسالة ترحيب -->
+  <div class="welcome">
+    <strong>مرحباً بك يا مدير النظام (Admin)</strong>
+  </div>
+
+  <!-- أزرار الداش بورد -->
   <div class="container">
-    <div class="btn" onclick="window.location.href='incoming.html'">📥 الأدوية الواردة</div>
-    <div class="btn" onclick="window.location.href='outgoing.html'">📤 الأدوية المنصرفة</div>
-    <div class="btn" onclick="window.location.href='medicines.html'">💊 قائمة الأدوية</div>
-    <div class="btn" onclick="window.location.href='suppliers.html'">📦 الموردين</div>
-    <div class="btn" onclick="window.location.href='daily_incoming.html'">📅 تقرير يومي الوارد</div>
+    <div class="btn" onclick="window.location.href='suppliers.html'">🚚 قائمة الموردين</div>
+    <div class="btn" onclick="window.location.href='incoming.html'">🧪 الأدوية الواردة</div>
+    <div class="btn" onclick="window.location.href='medicines.html'">💊 الأدوية</div>
     <div class="btn" onclick="window.location.href='daily_outgoing.html'">📅 تقرير يومي المنصرف</div>
-    <div class="btn logout" onclick="window.location.href='login.html'">🚪 تسجيل الخروج</div>
+    <div class="btn logout" onclick="window.location.href='login.html'">🔒 تسجيل خروج</div>
   </div>
 </body>
 </html>
