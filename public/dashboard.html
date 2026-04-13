@@ -10,10 +10,11 @@ async function login() {
 
   const result = await response.json();
   if (result.message) {
-    // هنا التحويل للوحة التحكم
+    // التحويل إلى لوحة التحكم بعد نجاح الدخول
     window.location.href = "/dashboard.html";
   } else {
     alert(result.error);
   }
 }
+
 
