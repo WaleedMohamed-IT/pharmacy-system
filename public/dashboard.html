@@ -28,18 +28,13 @@
       margin: 15px;
       border-radius: 8px;
       cursor: pointer;
-      width: 220px;
+      width: 200px;
       text-align: center;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       transition: 0.3s;
     }
     .btn:hover {
       background: #388e3c;
-    }
-    .btn p {
-      font-size: 12px;
-      color: #eee;
-      margin-top: 8px;
     }
   </style>
   <script>
@@ -51,35 +46,12 @@
 <body>
   <h1>لوحة التحكم - الصيدلية المركزية</h1>
   <div class="container">
-    <div class="btn" onclick="openPage('suppliers.html')">
-      🏢 الموردين
-      <p>قائمة الشركات الموردة والأدوية التي توفرها</p>
-    </div>
-
-    <div class="btn" onclick="openPage('incoming.html')">
-      📥 الأدوية الواردة
-      <p>تفاصيل الأدوية التي وصلت حديثًا مع الموردين</p>
-    </div>
-
-    <div class="btn" onclick="openPage('outgoing.html')">
-      📤 الأدوية المنصرفة
-      <p>الأدوية التي تم صرفها للأقسام الداخلية</p>
-    </div>
-
-    <div class="btn" onclick="openPage('medicines.html')">
-      💊 الأدوية
-      <p>قائمة الأدوية المتوفرة بالمستشفى والمخزون الحالي</p>
-    </div>
-
-    <div class="btn" onclick="openPage('daily_incoming.html')">
-      📅 تقرير يومي الوارد
-      <p>تقرير يومي يوضح الأدوية الواردة لكل قسم</p>
-    </div>
-
-    <div class="btn" onclick="openPage('daily_outgoing.html')">
-      📅 تقرير يومي المنصرف
-      <p>تقرير يومي يوضح الأدوية المنصرفة لكل قسم</p>
-    </div>
+    <div class="btn" onclick="openPage('suppliers.html')">🏢 الموردين</div>
+    <div class="btn" onclick="openPage('incoming.html')">📥 الأدوية الواردة</div>
+    <div class="btn" onclick="openPage('outgoing.html')">📤 الأدوية المنصرفة</div>
+    <div class="btn" onclick="openPage('medicines.html')">💊 الأدوية</div>
+    <div class="btn" onclick="openPage('daily_incoming.html')">📅 تقرير يومي الوارد</div>
+    <div class="btn" onclick="openPage('daily_outgoing.html')">📅 تقرير يومي المنصرف</div>
   </div>
 </body>
 </html>
