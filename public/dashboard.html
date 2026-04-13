@@ -3,61 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <title>Pharmacy System - Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       font-family: "Segoe UI", Tahoma, sans-serif;
       background-color: #f9f9f9;
       margin: 0;
       padding: 0;
+      direction: rtl;
     }
     header {
-      background: linear-gradient(90deg, #4caf50, #2e7d32);
+      background: #4caf50;
       color: white;
       padding: 15px;
       text-align: center;
-      font-size: 26px;
+      font-size: 24px;
       font-weight: bold;
+    }
+    nav {
+      background: #388e3c;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
     }
     .container {
       padding: 20px;
-    }
-    h2 {
-      color: #333;
-      margin-bottom: 10px;
-    }
-    .stats {
-      display: flex;
-      justify-content: space-around;
-      margin: 20px 0;
-    }
-    .box {
-      background: #ffffff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 20px;
-      border-radius: 8px;
       text-align: center;
-      width: 220px;
     }
-    .box h3 {
-      color: #4caf50;
-      margin-bottom: 10px;
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    th {
+    .btn {
       background: #4caf50;
       color: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 180px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s;
     }
-    th, td {
-      padding: 12px;
-      text-align: center;
-      border: 1px solid #ddd;
+    .btn:hover {
+      background: #2e7d32;
     }
     .logout {
       background-color: #f44336;
@@ -66,67 +66,47 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      margin-top: 20px;
+      margin-top: 40px;
     }
     .logout:hover {
       background-color: #c62828;
     }
-    canvas {
-      margin-top: 30px;
-    }
   </style>
 </head>
 <body>
-  <header>💊 Pharmacy System Dashboard</header>
+  <header>💊 Pharmacy System</header>
+  <nav>
+    <a href="#">الصيدلية</a>
+    <a href="#">العملاء</a>
+    <a href="#">الشركات</a>
+    <a href="#">الموردين</a>
+    <a href="#">الدعم الفني</a>
+    <a href="#">المبيعات والمشتريات</a>
+    <a href="#">إداريات</a>
+  </nav>
+
   <div class="container">
     <h2>مرحباً بك يا مدير النظام (Admin)</h2>
 
-    <div class="stats">
-      <div class="box">
-        <h3>عدد المستخدمين</h3>
-        <p id="usersCount">0</p>
-      </div>
-      <div class="box">
-        <h3>عدد الأدوية</h3>
-        <p id="medsCount">0</p>
-      </div>
+    <div class="buttons">
+      <div class="btn" onclick="openPage('sales.html')">📊 تقرير مبيعاتك</div>
+      <div class="btn" onclick="openPage('purchases.html')">📈 تقرير مشترياتك</div>
+      <div class="btn" onclick="openPage('medicines.html')">💊 الأدوية</div>
+      <div class="btn" onclick="openPage('customers.html')">👥 قائمة الزبائن</div>
+      <div class="btn" onclick="openPage('suppliers.html')">🚚 قائمة الموردين</div>
+      <div class="btn" onclick="openPage('profits.html')">💵 تقرير الأرباح والخسائر</div>
+      <div class="btn" onclick="openPage('daily_sales.html')">🗓 تقرير يومية المبيعات</div>
+      <div class="btn" onclick="openPage('daily_purchases.html')">🗓 تقرير يومية المشتريات</div>
     </div>
 
-    <h3>قائمة الأدوية</h3>
-    <table>
-      <tr>
-        <th>اسم الدواء</th>
-        <th>الكمية</th>
-        <th>السعر</th>
-      </tr>
-      <tr>
-        <td>—</td>
-        <td>—</td>
-        <td>—</td>
-      </tr>
-    </table>
-
-    <h3>قائمة المستخدمين</h3>
-    <table>
-      <tr>
-        <th>الاسم</th>
-        <th>البريد الإلكتروني</th>
-        <th>الدور</th>
-      </tr>
-      <tr>
-        <td>—</td>
-        <td>—</td>
-        <td>—</td>
-      </tr>
-    </table>
-
     <button class="logout" onclick="logout()">🔒 تسجيل خروج</button>
-
-    <!-- رسم بياني -->
-    <canvas id="statsChart" width="400" height="200"></canvas>
   </div>
 
   <script>
+    function openPage(page) {
+      window.location.href = page;
+    }
+
     async function logout() {
       const response = await fetch("/logout", { method: "POST" });
       const result = await response.json();
@@ -135,26 +115,6 @@
         window.location.href = "/";
       }
     }
-
-    // مثال بيانات للرسم البياني
-    const ctx = document.getElementById('statsChart').getContext('2d');
-    const statsChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['المستخدمين', 'الأدوية'],
-        datasets: [{
-          label: 'إحصائيات النظام',
-          data: [0, 0], // عدّل القيم حسب قاعدة البيانات
-          backgroundColor: ['#4caf50', '#81c784']
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false }
-        }
-      }
-    });
   </script>
 </body>
 </html>
