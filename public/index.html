@@ -1,129 +1,42 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>Pharmacy System</title>
-  <style>
-    body { font-family: Tahoma, sans-serif; margin:0; background:#f4f4f4; }
-    header { background:#2e7d32; color:white; padding:15px; text-align:center; }
-    nav { background:#388e3c; display:flex; justify-content:center; }
-    nav a { color:white; padding:10px 20px; text-decoration:none; }
-    nav a:hover { background:#1b5e20; }
-    .container { padding:20px; }
-    .card { background:white; padding:20px; margin:10px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
-    .logout { background:red; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer; }
-    table { width:100%; border-collapse:collapse; margin-top:20px; }
-    th, td { border:1px solid #ccc; padding:10px; text-align:center; }
-    th { background:#e0e0e0; }
-    .form-box { background:#fff; padding:15px; margin-top:15px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); display:none; }
-    .form-box input { margin:5px; padding:8px; }
-    .form-box button { margin-top:10px; padding:8px 15px; }
-  </style>
+  <title>نظام الصيدلية</title>
 </head>
 <body>
+  <h1>تسجيل الدخول</h1>
+  <input type="text" id="username" placeholder="اسم المستخدم">
+  <input type="password" id="password" placeholder="كلمة المرور">
+  <button onclick="login()">دخول</button>
+  <button onclick="logout()">خروج</button>
 
-  <header>
-    <h1>💊 Pharmacy System</h1>
-  </header>
-
-  <nav>
-    <a href="#home">🏠 الرئيسية</a>
-    <a href="#medicines">💊 الأدوية</a>
-    <a href="#users">👤 المستخدمين</a>
-    <a href="#reports">📊 التقارير</a>
-  </nav>
-
-  <div class="container" id="home">
-    <h2>مرحباً بك أيها المستخدم العزيز</h2>
-    <button class="logout">تسجيل خروج</button>
-    <div style="display:flex;">
-      <div class="card">عدد المستخدمين: 2</div>
-      <div class="card">عدد الأدوية: 2</div>
-    </div>
-  </div>
-
-  <div class="container" id="medicines">
-    <h2>قائمة الأدوية</h2>
-    <button id="addMedicine">➕ إضافة دواء جديد</button>
-
-    <!-- نموذج إضافة دواء جديد -->
-    <div class="form-box" id="medicineForm">
-      <label>اسم الدواء: <input type="text" id="medName"></label><br>
-      <label>الكمية: <input type="number" id="medQty"></label><br>
-      <label>السعر: <input type="text" id="medPrice"></label><br>
-      <button id="saveMedicine">💾 حفظ</button>
-    </div>
-
-    <table id="medicineTable">
-      <tr><th>اسم الدواء</th><th>الكمية</th><th>السعر</th></tr>
-      <tr><td>باراسيتامول</td><td>50</td><td>10 جنيه</td></tr>
-      <tr><td>أموكسيسيلين</td><td>30</td><td>25 جنيه</td></tr>
-    </table>
-  </div>
-
-  <div class="container" id="users">
-    <h2>قائمة المستخدمين</h2>
-    <table>
-      <tr><th>اسم المستخدم</th><th>البريد الإلكتروني</th></tr>
-      <tr><td>وليد</td><td>waleed@example.com</td></tr>
-      <tr><td>أحمد</td><td>ahmed@example.com</td></tr>
-    </table>
-  </div>
-
-  <div class="container" id="reports">
-    <h2>التقارير</h2>
-    <p>📊 هنا يمكن عرض الرسوم البيانية أو تحميل ملفات CSV/PDF للتقارير.</p>
-  </div>
-
-  <!-- JavaScript لتشغيل الأزرار -->
   <script>
-    // زر تسجيل خروج
-    document.querySelector(".logout").addEventListener("click", function() {
-      alert("تم تسجيل الخروج بنجاح!");
-    });
+    async function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-    // زر إضافة دواء جديد
-    document.querySelector("#addMedicine").addEventListener("click", function() {
-      document.querySelector("#medicineForm").style.display = "block";
-    });
+      const response = await fetch("http://localhost:8080/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
 
-    // زر حفظ الدواء الجديد (يرسل للـ Backend)
-    document.querySelector("#saveMedicine").addEventListener("click", async function() {
-      const name = document.querySelector("#medName").value;
-      const qty = document.querySelector("#medQty").value;
-      const price = document.querySelector("#medPrice").value;
+      const result = await response.json();
+      alert(result.message || result.error);
+    }
 
-      if(name && qty && price){
-        try {
-          const response = await fetch("/addMedicine", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, qty, price })
-          });
-          const result = await response.json();
-          alert(result.message);
-
-          if(result.success){
-            const table = document.querySelector("#medicineTable");
-            const row = table.insertRow();
-            row.insertCell(0).innerText = name;
-            row.insertCell(1).innerText = qty;
-            row.insertCell(2).innerText = price;
-
-            document.querySelector("#medicineForm").style.display = "none";
-            document.querySelector("#medName").value = "";
-            document.querySelector("#medQty").value = "";
-            document.querySelector("#medPrice").value = "";
-          }
-        } catch (err) {
-          alert("حدث خطأ أثناء الاتصال بالسيرفر");
-        }
-      } else {
-        alert("من فضلك أدخل جميع البيانات!");
-      }
-    });
+    async function logout() {
+      const response = await fetch("http://localhost:8080/logout", {
+        method: "POST"
+      });
+      const result = await response.json();
+      alert(result.message || result.error);
+      // إعادة التوجيه لصفحة تسجيل الدخول
+      window.location.href = "/index.html";
+    }
   </script>
-
 </body>
 </html>
+
 

@@ -1,82 +1,49 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const { Pool } = require("pg");
+const session = require("express-session");
+const cors = require("cors");
 
 const app = express();
-const port = process.env.PORT || 8080;
+app.use(cors());
+app.use(express.json());
 
-// الاتصال بقاعدة البيانات باستخدام DATABASE_URL من البيئة
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || "postgres://username:password@host:5432/database",
-  ssl: { rejectUnauthorized: false }
-});
+// إعداد الـ Session
+app.use(session({
+  secret: "pharmacy-secret",
+  resave: false,
+  saveUninitialized: true
+}));
 
-// Middleware
-app.use(bodyParser.json());
-app.use(express.static("public"));
-
-// Route رئيسي
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
-});
-
-// -------------------- الأدوية --------------------
-app.post("/addMedicine", async (req, res) => {
-  try {
-    const name = req.body.name?.toString() || "";
-    const qty = parseInt(req.body.qty) || 0;
-    const price = req.body.price?.toString() || "";
-
-    await pool.query(
-      "INSERT INTO medicines (name, quantity, price) VALUES ($1, $2, $3)",
-      [name, qty, price]
-    );
-
-    res.json({ success: true, message: "تم إضافة الدواء بنجاح!" });
-  } catch (err) {
-    console.error("خطأ أثناء إضافة الدواء:", err);
-    res.status(500).json({ success: false, message: "حدث خطأ أثناء إضافة الدواء" });
+// تسجيل الدخول
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  // تحقق بسيط (يمكن ربطه بقاعدة البيانات لاحقًا)
+  if (username === "admin" && password === "1234") {
+    req.session.user = username;
+    res.json({ message: "✅ تم تسجيل الدخول بنجاح" });
+  } else {
+    res.status(401).json({ error: "❌ اسم المستخدم أو كلمة المرور غير صحيحة" });
   }
 });
 
-app.get("/medicines", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT * FROM medicines");
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, message: "حدث خطأ أثناء جلب الأدوية" });
+// تسجيل الخروج
+app.post("/logout", (req, res) => {
+  req.session.destroy(err => {
+    if (err) return res.status(500).json({ error: "❌ فشل تسجيل الخروج" });
+    res.json({ message: "✅ تم تسجيل الخروج بنجاح" });
+  });
+});
+
+// حماية أي مسار يتطلب تسجيل دخول
+app.get("/protected", (req, res) => {
+  if (req.session.user) {
+    res.json({ message: `مرحباً ${req.session.user}` });
+  } else {
+    res.status(401).json({ error: "❌ يجب تسجيل الدخول أولاً" });
   }
 });
 
-// -------------------- المستخدمين --------------------
-app.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
-  try {
-    await pool.query(
-      "INSERT INTO users (username, email, password) VALUES ($1, $2, $3)",
-      [username, email, password]
-    );
-    res.json({ success: true, message: "تم تسجيل المستخدم بنجاح!" });
-  } catch (err) {
-    console.error("خطأ أثناء تسجيل المستخدم:", err);
-    res.status(500).json({ success: false, message: "حدث خطأ أثناء تسجيل المستخدم" });
-  }
-});
+app.listen(8080, () => console.log("✅ Server running on port 8080"));
 
-app.get("/users", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT id, username, email FROM users");
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, message: "حدث خطأ أثناء جلب المستخدمين" });
-  }
-});
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
 
 
 
