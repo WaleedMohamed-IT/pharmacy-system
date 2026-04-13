@@ -22,15 +22,10 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// تسجيل الدخول
+// دخول مباشر بدون تحقق من اسم المستخدم أو كلمة المرور
 app.post("/login", (req, res) => {
-  const { username, password } = req.body;
-  if (username === "admin" && password === "1234") {
-    req.session.user = username;
-    res.json({ message: "✅ تم تسجيل الدخول بنجاح" });
-  } else {
-    res.status(401).json({ error: "❌ اسم المستخدم أو كلمة المرور غير صحيحة" });
-  }
+  req.session.user = "admin"; 
+  res.json({ message: "✅ دخول مباشر بدون كلمة مرور" });
 });
 
 // تسجيل الخروج
@@ -54,6 +49,7 @@ app.get("/protected", (req, res) => {
 app.listen(process.env.PORT || 8080, () => {
   console.log("✅ Server running on port " + (process.env.PORT || 8080));
 });
+
 
 
 
