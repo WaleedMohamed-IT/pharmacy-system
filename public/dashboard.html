@@ -2,113 +2,85 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>Pharmacy System - Dashboard</title>
+  <title>لوحة التحكم - الصيدلية المركزية</title>
   <style>
     body {
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      background-color: #f9f9f9;
+      font-family: Tahoma, Arial, sans-serif;
+      background-color: #f0f0f0;
       margin: 0;
-      padding: 0;
+      padding: 20px;
       direction: rtl;
     }
-    header {
-      background: #4caf50;
-      color: white;
-      padding: 15px;
+    h1 {
       text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-    }
-    nav {
-      background: #388e3c;
-      display: flex;
-      justify-content: center;
-      padding: 10px;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
+      color: #2e7d32;
     }
     .container {
-      padding: 20px;
-      text-align: center;
-    }
-    .buttons {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
       margin-top: 30px;
     }
     .btn {
       background: #4caf50;
       color: white;
       padding: 20px;
+      margin: 15px;
       border-radius: 8px;
-      width: 200px;
       cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       transition: 0.3s;
     }
     .btn:hover {
-      background: #2e7d32;
+      background: #388e3c;
     }
-    .logout {
-      background-color: #f44336;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 40px;
-    }
-    .logout:hover {
-      background-color: #c62828;
+    .btn p {
+      font-size: 12px;
+      color: #eee;
+      margin-top: 8px;
     }
   </style>
-</head>
-<body>
-  <header>💊 Pharmacy System</header>
-  <nav>
-    <a href="#">الصيدلية</a>
-    <a href="#">الموردين</a>
-    <a href="#">الدعم الفني</a>
-    <a href="#">اداريات</a>
-  </nav>
-
-  <div class="container">
-    <h2>مرحباً بك يا مدير النظام (Admin)</h2>
-
-    <div class="buttons">
-      <div class="btn" onclick="openPage('suppliers.html')">🚚 قائمة الموردين</div>
-      <div class="btn" onclick="openPage('incoming.html')">📥 الأدوية الواردة</div>
-      <div class="btn" onclick="openPage('medicines.html')">💊 الأدوية</div>
-      <div class="btn" onclick="openPage('daily_outgoing.html')">🗓 تقرير يومي المنصرف</div>
-    </div>
-
-    <button class="logout" onclick="logout()">🔒 تسجيل خروج</button>
-  </div>
-
   <script>
     function openPage(page) {
       window.location.href = page;
     }
-
-    async function logout() {
-      const response = await fetch("/logout", { method: "POST" });
-      const result = await response.json();
-      if (result.message) {
-        alert(result.message);
-        window.location.href = "/";
-      }
-    }
   </script>
+</head>
+<body>
+  <h1>لوحة التحكم - الصيدلية المركزية</h1>
+  <div class="container">
+    <div class="btn" onclick="openPage('suppliers.html')">
+      🏢 الموردين
+      <p>قائمة الشركات الموردة والأدوية التي توفرها</p>
+    </div>
+
+    <div class="btn" onclick="openPage('incoming.html')">
+      📥 الأدوية الواردة
+      <p>تفاصيل الأدوية التي وصلت حديثًا مع الموردين</p>
+    </div>
+
+    <div class="btn" onclick="openPage('outgoing.html')">
+      📤 الأدوية المنصرفة
+      <p>الأدوية التي تم صرفها للأقسام الداخلية</p>
+    </div>
+
+    <div class="btn" onclick="openPage('medicines.html')">
+      💊 الأدوية
+      <p>قائمة الأدوية المتوفرة بالمستشفى والمخزون الحالي</p>
+    </div>
+
+    <div class="btn" onclick="openPage('daily_incoming.html')">
+      📅 تقرير يومي الوارد
+      <p>تقرير يومي يوضح الأدوية الواردة لكل قسم</p>
+    </div>
+
+    <div class="btn" onclick="openPage('daily_outgoing.html')">
+      📅 تقرير يومي المنصرف
+      <p>تقرير يومي يوضح الأدوية المنصرفة لكل قسم</p>
+    </div>
+  </div>
 </body>
 </html>
 
