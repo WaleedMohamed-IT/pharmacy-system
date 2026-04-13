@@ -50,7 +50,7 @@
       color: white;
       padding: 20px;
       border-radius: 8px;
-      width: 180px;
+      width: 200px;
       cursor: pointer;
       font-size: 16px;
       font-weight: bold;
@@ -77,26 +77,23 @@
   <header>💊 Pharmacy System</header>
   <nav>
     <a href="#">الصيدلية</a>
-    <a href="#">العملاء</a>
     <a href="#">الشركات</a>
     <a href="#">الموردين</a>
     <a href="#">الدعم الفني</a>
     <a href="#">المبيعات والمشتريات</a>
-    <a href="#">إداريات</a>
+    <a href="#">إدارات</a>
   </nav>
 
   <div class="container">
     <h2>مرحباً بك يا مدير النظام (Admin)</h2>
 
     <div class="buttons">
-      <div class="btn" onclick="openPage('sales.html')">📊 تقرير مبيعاتك</div>
-      <div class="btn" onclick="openPage('purchases.html')">📈 تقرير مشترياتك</div>
-      <div class="btn" onclick="openPage('medicines.html')">💊 الأدوية</div>
-      <div class="btn" onclick="openPage('customers.html')">👥 قائمة الزبائن</div>
       <div class="btn" onclick="openPage('suppliers.html')">🚚 قائمة الموردين</div>
-      <div class="btn" onclick="openPage('profits.html')">💵 تقرير الأرباح والخسائر</div>
-      <div class="btn" onclick="openPage('daily_sales.html')">🗓 تقرير يومية المبيعات</div>
-      <div class="btn" onclick="openPage('daily_purchases.html')">🗓 تقرير يومية المشتريات</div>
+      <div class="btn" onclick="openPage('incoming.html')">📥 الأدوية الواردة</div>
+      <div class="btn" onclick="openPage('outgoing.html')">📤 الأدوية المنصرفة</div>
+      <div class="btn" onclick="openPage('daily_incoming.html')">🗓 تقرير يومي الوارد</div>
+      <div class="btn" onclick="openPage('daily_outgoing.html')">🗓 تقرير يومي المنصرف</div>
+      <div class="btn" onclick="openPage('medicines.html')">💊 الأدوية</div>
     </div>
 
     <button class="logout" onclick="logout()">🔒 تسجيل خروج</button>
