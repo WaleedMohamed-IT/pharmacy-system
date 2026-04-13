@@ -1,20 +1,128 @@
-async function login() {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>Pharmacy System</title>
+  <style>
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background-color: #e8f5e9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #4caf50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+    }
+    header span {
+      margin-left: 10px;
+    }
+    .container {
+      padding: 20px;
+    }
+    h2 {
+      color: #2e7d32;
+    }
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+    .box {
+      background: #c8e6c9;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      width: 200px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    table, th, td {
+      border: 1px solid #4caf50;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    .logout {
+      background-color: #f44336;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .logout:hover {
+      background-color: #c62828;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span>💊</span> Pharmacy System
+  </header>
+  <div class="container">
+    <h2>مرحباً بك يا مدير النظام (Admin)</h2>
+    <div class="stats">
+      <div class="box">
+        <h3>عدد المستخدمين</h3>
+        <p>0</p>
+      </div>
+      <div class="box">
+        <h3>عدد الأدوية</h3>
+        <p>0</p>
+      </div>
+    </div>
 
-  const response = await fetch("/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password })
-  });
+    <h3>قائمة الأدوية</h3>
+    <table>
+      <tr>
+        <th>اسم الدواء</th>
+        <th>الكمية</th>
+        <th>السعر</th>
+      </tr>
+      <tr>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+    </table>
 
-  const result = await response.json();
-  if (result.message) {
-    // التحويل إلى لوحة التحكم بعد نجاح الدخول
-    window.location.href = "/dashboard.html";
-  } else {
-    alert(result.error);
-  }
-}
+    <h3>قائمة المستخدمين</h3>
+    <table>
+      <tr>
+        <th>الاسم</th>
+        <th>البريد الإلكتروني</th>
+        <th>الدور</th>
+      </tr>
+      <tr>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+    </table>
+
+    <button class="logout" onclick="logout()">🔒 تسجيل خروج</button>
+  </div>
+
+  <script>
+    async function logout() {
+      const response = await fetch("/logout", { method: "POST" });
+      const result = await response.json();
+      if (result.message) {
+        alert(result.message);
+        window.location.href = "/";
+      }
+    }
+  </script>
+</body>
+</html>
+
 
 
