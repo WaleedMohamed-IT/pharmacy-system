@@ -2,23 +2,20 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>نظام الصيدلية</title>
+  <title>الدخول المباشر</title>
   <style>
     body {
       font-family: Tahoma, Arial, sans-serif;
       background-color: #f4f4f4;
       text-align: center;
-      margin-top: 50px;
+      margin-top: 100px;
     }
-    input {
-      display: block;
-      margin: 10px auto;
-      padding: 10px;
-      width: 250px;
+    h1 {
+      color: #007bff;
     }
     button {
       padding: 10px 20px;
-      margin: 10px;
+      margin: 20px;
       cursor: pointer;
       background-color: #007bff;
       color: white;
@@ -28,56 +25,33 @@
     button:hover {
       background-color: #0056b3;
     }
-    #welcome {
-      margin-top: 20px;
-      font-size: 18px;
-      color: green;
-    }
   </style>
 </head>
 <body>
-  <h1>تسجيل الدخول</h1>
-  <input type="text" id="username" placeholder="اسم المستخدم">
-  <input type="password" id="password" placeholder="كلمة المرور">
-  <button onclick="login()">دخول</button>
+  <h1>مرحباً بك في نظام الصيدلية</h1>
+  <button onclick="login()">دخول مباشر</button>
   <button onclick="logout()">خروج</button>
-
-  <div id="welcome"></div>
 
   <script>
     async function login() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-
-      const response = await fetch("/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-      });
-
+      const response = await fetch("/login", { method: "POST" });
       const result = await response.json();
       if (result.message) {
-        document.getElementById("welcome").innerText = "مرحباً " + username + " 👋";
-      } else {
-        alert(result.error);
+        window.location.href = "/dashboard.html"; // التحويل المباشر
       }
     }
 
     async function logout() {
-      const response = await fetch("/logout", {
-        method: "POST"
-      });
+      const response = await fetch("/logout", { method: "POST" });
       const result = await response.json();
       if (result.message) {
-        document.getElementById("welcome").innerText = "";
         alert(result.message);
         window.location.href = "/";
-      } else {
-        alert(result.error);
       }
     }
   </script>
 </body>
 </html>
+
 
 
