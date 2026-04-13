@@ -34,6 +34,7 @@
 
   <script>
     async function login() {
+      // دخول مباشر بدون حقول إدخال
       const response = await fetch("/login", { method: "POST" });
       const result = await response.json();
       if (result.message) {
@@ -52,6 +53,7 @@
   </script>
 </body>
 </html>
+
 
 
 
