@@ -32,8 +32,25 @@
       text-align: center;
       border: 1px solid #ddd;
     }
+    /* تنسيق زر الرجوع */
+    .back-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 24px;
+      font-weight: bold;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .back-btn:hover {
+      background-color: #45a049;
+    }
   </style>
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
   <h2>قائمة الموردين</h2>
   <table>
@@ -53,5 +70,11 @@
       <td>01098765432</td>
     </tr>
   </table>
+
+  <!-- زر الرجوع إلى القائمة الرئيسية -->
+  <button class="back-btn" onclick="window.location.href='dashboard.html'">
+    ⬅️ الرجوع إلى القائمة الرئيسية
+  </button>
 </body>
 </html>
+
