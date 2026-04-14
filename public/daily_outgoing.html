@@ -10,9 +10,11 @@
       margin: 0;
       padding: 20px;
       direction: rtl;
+      font-weight: bold;
     }
     h2 {
       color: #2e7d32;
+      text-align: center;
     }
     table {
       width: 100%;
@@ -29,6 +31,22 @@
       padding: 12px;
       text-align: center;
       border: 1px solid #ddd;
+    }
+    /* تنسيق زر الرجوع */
+    .back-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 24px;
+      font-weight: bold;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .back-btn:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
@@ -71,5 +89,10 @@
       <td>2026-04-10</td>
     </tr>
   </table>
+
+  <!-- زر الرجوع إلى القائمة الرئيسية -->
+  <button class="back-btn" onclick="window.location.href='dashboard.html'">
+    ⬅️ الرجوع إلى القائمة الرئيسية
+  </button>
 </body>
 </html>
