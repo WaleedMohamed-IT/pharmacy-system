@@ -1,4 +1,3 @@
-/* تنسيق عام */
 body {
   font-family: Tahoma, Arial, sans-serif;
   background-color: #f9f9f9;
@@ -7,7 +6,6 @@ body {
   direction: rtl;
 }
 
-/* رأس الصفحة */
 header {
   background-color: #4CAF50;
   color: white;
@@ -17,7 +15,6 @@ header {
   font-weight: bold;
 }
 
-/* شريط القوائم العلوي */
 .navbar {
   list-style-type: none;
   margin: 0;
@@ -41,7 +38,6 @@ header {
   background-color: #45a049;
 }
 
-/* الأزرار الرئيسية كرابط */
 .main-buttons {
   display: flex;
   flex-direction: row;
@@ -72,7 +68,15 @@ header {
   background-color: #45a049;
 }
 
-/* زر تسجيل الخروج كرابط */
+.main-buttons .red-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.main-buttons .red-btn:hover {
+  background-color: #d32f2f;
+}
+
 .logout-btn {
   display: flex;
   justify-content: center;
@@ -94,4 +98,46 @@ header {
 
 .logout-btn .red-btn:hover {
   background-color: #d32f2f;
+}
+
+.back-btn {
+  display: block;
+  margin: 30px auto;
+  padding: 12px 24px;
+  font-weight: bold;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.back-btn:hover {
+  background-color: #45a049;
+}
+
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  text-align: center;
+}
+
+td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
