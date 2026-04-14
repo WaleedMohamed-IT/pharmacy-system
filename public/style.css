@@ -1,24 +1,71 @@
-/* الأزرار الرئيسية كرابط */
-.main-buttons a {
+/* تنسيق عام */
+body {
+  font-family: Tahoma, Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+}
+
+/* رأس الصفحة */
+header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* شريط القوائم العلوي */
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #4CAF50;
+  display: flex;             /* يجعل العناصر بجانب بعض */
+  flex-direction: row;       /* الاتجاه أفقي */
+  justify-content: center;   /* يوسّط العناصر */
+}
+
+.navbar li {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar li a:hover {
+  background-color: #45a049;
+}
+
+/* الأزرار الرئيسية (أفقية بجانب بعض) */
+.main-buttons {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.main-buttons button {
   width: 220px;
   padding: 15px;
   margin: 10px;
   font-size: 16px;
   font-weight: bold;
+  border: none;
   border-radius: 6px;
   cursor: pointer;
-  text-decoration: none;
 }
 
-.main-buttons a span.icon {
-  margin-left: 8px;
-  font-size: 18px;
-}
-
-/* الأزرار الخضراء */
 .main-buttons .green-btn {
   background-color: #4CAF50;
   color: white;
@@ -28,7 +75,13 @@
   background-color: #45a049;
 }
 
-/* زر تسجيل الخروج كرابط */
+/* زر تسجيل الخروج في سطر منفصل */
+.logout-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
 .logout-btn .red-btn {
   background-color: #f44336;
   color: white;
@@ -36,13 +89,55 @@
   padding: 15px;
   font-size: 16px;
   font-weight: bold;
+  border: none;
   border-radius: 6px;
   cursor: pointer;
-  text-decoration: none;
-  display: block;
-  text-align: center;
 }
 
 .logout-btn .red-btn:hover {
   background-color: #d32f2f;
+}
+
+/* زر الرجوع */
+.back-btn {
+  display: block;
+  margin: 30px auto;
+  padding: 12px 24px;
+  font-weight: bold;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.back-btn:hover {
+  background-color: #45a049;
+}
+
+/* تنسيق الجداول */
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  text-align: center;
+}
+
+td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
