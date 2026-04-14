@@ -2,42 +2,38 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>Pharmacy System 💊</title>
+  <title>القائمة الرئيسية</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- رأس الصفحة -->
   <header>
-    Pharmacy System 💊
+    القائمة الرئيسية 🏥
   </header>
 
   <!-- شريط القوائم العلوي -->
   <nav>
     <ul class="navbar">
-      <li><a href="pharmacy.html">الصيدلية</a></li>
-      <li><a href="suppliers.html">الموردين</a></li>
-      <li><a href="support.html">الدعم الفني</a></li>
-      <li><a href="admin.html">اداريات</a></li>
-      <li><a href="search.html">بحث</a></li>
+      <li><a href="pharmacy.html">💊 الصيدلية</a></li>
+      <li><a href="suppliers.html">🚚 الموردين</a></li>
+      <li><a href="support.html">🛠️ الدعم الفني</a></li>
+      <li><a href="admin.html">👥 اداريات</a></li>
+      <li><a href="search.html">🔍 بحث</a></li>
     </ul>
   </nav>
 
-  <!-- رسالة الترحيب -->
-  <h2 style="text-align:center; margin-top:20px;">
-    مرحباً بك يا مدير النظام (Admin)
-  </h2>
-
-  <!-- الأزرار الرئيسية (أفقية بجانب بعض) -->
+  <!-- الأزرار الرئيسية -->
   <div class="main-buttons">
-    <button class="green-btn" onclick="window.location.href='daily_outgoing.html'">📅 تقرير يومي المنصرف</button>
-    <button class="green-btn" onclick="window.location.href='medicines.html'">💊 الأدوية</button>
-    <button class="green-btn" onclick="window.location.href='incoming.html'">✏️ الأدوية الواردة</button>
-    <button class="green-btn" onclick="window.location.href='suppliers.html'">🚚 قائمة الموردين</button>
+    <button class="green-btn"><span class="icon">💊</span> الصيدلية</button>
+    <button class="green-btn"><span class="icon">🚚</span> الموردين</button>
+    <button class="green-btn"><span class="icon">🛠️</span> الدعم الفني</button>
+    <button class="green-btn"><span class="icon">👥</span> اداريات</button>
+    <button class="green-btn"><span class="icon">🔍</span> بحث</button>
   </div>
 
-  <!-- زر تسجيل الخروج في سطر منفصل -->
+  <!-- زر تسجيل الخروج -->
   <div class="logout-btn">
-    <button class="red-btn" onclick="window.location.href='logout.html'">🔒 تسجيل خروج</button>
+    <button class="red-btn">🚪 تسجيل الخروج</button>
   </div>
 </body>
 </html>
