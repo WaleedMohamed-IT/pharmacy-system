@@ -1,4 +1,4 @@
-/* تنسيق عام للصفحة */
+/* تنسيق عام */
 body {
   font-family: Tahoma, Arial, sans-serif;
   background-color: #f9f9f9;
@@ -24,6 +24,7 @@ header {
   padding: 0;
   background-color: #4CAF50;
   display: flex;             /* يجعل العناصر بجانب بعض */
+  flex-direction: row;       /* الاتجاه أفقي */
   justify-content: center;   /* يوسّط العناصر */
 }
 
@@ -45,8 +46,7 @@ header {
   background-color: #45a049;
 }
 
-
-/* الأزرار الرئيسية في الداشبورد */
+/* الأزرار الرئيسية */
 .main-buttons {
   display: flex;
   flex-direction: column;

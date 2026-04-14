@@ -2,39 +2,38 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>Pharmacy System</title>
-  <link rel="stylesheet" href="style.css"> <!-- ربط بالملف الموحد -->
+  <title>Pharmacy System 💊</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- الهيدر -->
+  <!-- رأس الصفحة -->
   <header>
-    💊 Pharmacy System
+    Pharmacy System 💊
   </header>
 
-  <!-- شريط التنقل -->
- <nav>
-  <ul>
-    <li><a href="pharmacy.html">الصيدلية</a></li>
-    <li><a href="suppliers.html">الموردين</a></li>
-    <li><a href="support.html">الدعم الفني</a></li>
-    <li><a href="admin.html">إداريات</a></li>
-    <li><a href="search.html">بحث</a></li>
-  </ul>
-</nav>
+  <!-- شريط القوائم العلوي -->
+  <nav>
+    <ul class="navbar">
+      <li><a href="pharmacy.html">الصيدلية</a></li>
+      <li><a href="suppliers.html">الموردين</a></li>
+      <li><a href="support.html">الدعم الفني</a></li>
+      <li><a href="admin.html">إدارات</a></li>
+      <li><a href="search.html">بحث</a></li>
+    </ul>
+  </nav>
 
+  <!-- رسالة الترحيب -->
+  <h2 style="text-align:center; margin-top:20px;">
+    مرحباً بك يا مدير النظام (Admin)
+  </h2>
 
-  <!-- رسالة ترحيب -->
-  <div class="welcome">
-    <strong>مرحباً بك يا مدير النظام (Admin)</strong>
-  </div>
-
-  <!-- أزرار الداش بورد -->
-  <div class="container">
-    <div class="btn" onclick="window.location.href='suppliers.html'">🚚 قائمة الموردين</div>
-    <div class="btn" onclick="window.location.href='incoming.html'">🧪 الأدوية الواردة</div>
-    <div class="btn" onclick="window.location.href='medicines.html'">💊 الأدوية</div>
-    <div class="btn" onclick="window.location.href='daily_outgoing.html'">📅 تقرير يومي المنصرف</div>
-    <div class="btn logout" onclick="window.location.href='login.html'">🔒 تسجيل خروج</div>
+  <!-- الأزرار الرئيسية -->
+  <div class="main-buttons">
+    <button class="green-btn" onclick="window.location.href='daily_outgoing.html'">📅 تقرير يومي المنصرف</button>
+    <button class="green-btn" onclick="window.location.href='medicines.html'">💊 الأدوية</button>
+    <button class="green-btn" onclick="window.location.href='incoming.html'">✏️ الأدوية الواردة</button>
+    <button class="green-btn" onclick="window.location.href='suppliers.html'">🚚 قائمة الموردين</button>
+    <button class="red-btn" onclick="window.location.href='logout.html'">🔒 تسجيل خروج</button>
   </div>
 </body>
 </html>
