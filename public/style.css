@@ -23,9 +23,9 @@ header {
   margin: 0;
   padding: 0;
   background-color: #4CAF50;
-  display: flex;             /* يجعل العناصر بجانب بعض */
-  flex-direction: row;       /* الاتجاه أفقي */
-  justify-content: center;   /* يوسّط العناصر */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .navbar li {
@@ -49,9 +49,9 @@ header {
 /* الأزرار الرئيسية (أفقية بجانب بعض) */
 .main-buttons {
   display: flex;
-  flex-direction: row;       /* يجعل الأزرار بجانب بعض */
-  justify-content: center;   /* يوسّط الأزرار */
-  flex-wrap: wrap;           /* يسمح بالنزول لسطر جديد عند الحاجة */
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-top: 40px;
 }
 
@@ -75,29 +75,25 @@ header {
   background-color: #45a049;
 }
 
-.main-buttons .red-btn {
+/* زر تسجيل الخروج في سطر منفصل */
+.logout-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.logout-btn .red-btn {
   background-color: #f44336;
   color: white;
-}
-
-.main-buttons .red-btn:hover {
-  background-color: #d32f2f;
-}
-
-/* زر الرجوع */
-.back-btn {
-  display: block;
-  margin: 30px auto;
-  padding: 12px 24px;
+  width: 250px;
+  padding: 15px;
+  font-size: 16px;
   font-weight: bold;
-  background-color: #4CAF50;
-  color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 16px;
 }
 
-.back-btn:hover {
-  background-color: #45a049;
+.logout-btn .red-btn:hover {
+  background-color: #d32f2f;
 }
