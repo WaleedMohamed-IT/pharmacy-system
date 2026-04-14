@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>بحث</title>
+  <style>
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      direction: rtl;
+      text-align: center;
+    }
+    h2 {
+      color: #2e7d32;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h2>صفحة البحث</h2>
+  <input type="text" placeholder="اكتب اسم الدواء أو المورد هنا">
+  <br>
+  <button>بحث</button>
+
+  <!-- زر الرجوع إلى القائمة الرئيسية -->
+  <br><br>
+  <button onclick="window.location.href='dashboard.html'">
+    ⬅️ الرجوع إلى القائمة الرئيسية
+  </button>
+</body>
+</html>
