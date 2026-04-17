@@ -1,0 +1,53 @@
+/* تنسيقات عامة */
+body {
+    font-family: "Tahoma", Arial, sans-serif;
+    background-color: #f8f9fa;
+    direction: rtl;
+    text-align: right;
+}
+
+/* العنوان الرئيسي */
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* مربعات الإحصائيات */
+.alert {
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* مربع البحث */
+form input[type="text"] {
+    border: 2px solid #007bff;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* الجدول */
+table {
+    background-color: #fff;
+}
+
+table th {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+}
+
+table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* زر التحديث */
+.btn-success {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
