@@ -8,9 +8,6 @@
         "phpoffice/phpspreadsheet": "^1.29",
         "vlucas/phpdotenv": "^5.5"
     },
-    "require-dev": {
-        "phpunit/phpunit": "^10.0"
-    },
     "autoload": {
         "psr-4": {
             "PharmacySystem\\": "src/"
