@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تقرير يومي المنصرف</title>
+  <style>
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      direction: rtl;
+      font-weight: bold;
+    }
+    h2 {
+      color: #2e7d32;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    th {
+      background: #4caf50;
+      color: white;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+    /* تنسيق زر الرجوع */
+    .back-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 24px;
+      font-weight: bold;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .back-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h2>تقرير يومي الأدوية المنصرفة</h2>
+  <table>
+    <tr>
+      <th>اسم الدواء</th>
+      <th>عدد العبوات المنصرفة اليوم</th>
+      <th>القسم الداخلي</th>
+      <th>تاريخ الصرف</th>
+      <th>تاريخ آخر تحديث</th>
+    </tr>
+    <tr>
+      <td>باراسيتامول</td>
+      <td>15 عبوة</td>
+      <td>قسم الأطفال</td>
+      <td>2026-04-13</td>
+      <td>2026-04-13</td>
+    </tr>
+    <tr>
+      <td>أموكسيسيلين</td>
+      <td>10 عبوة</td>
+      <td>قسم الباطنة</td>
+      <td>2026-04-13</td>
+      <td>2026-04-12</td>
+    </tr>
+    <tr>
+      <td>إيبوبروفين</td>
+      <td>8 عبوة</td>
+      <td>قسم العظام</td>
+      <td>2026-04-13</td>
+      <td>2026-04-11</td>
+    </tr>
+    <tr>
+      <td>حديد (Ferrous Sulfate)</td>
+      <td>12 عبوة</td>
+      <td>قسم النساء والولادة</td>
+      <td>2026-04-13</td>
+      <td>2026-04-10</td>
+    </tr>
+  </table>
+
+  <!-- زر الرجوع إلى القائمة الرئيسية -->
+  <button class="back-btn" onclick="window.location.href='dashboard.html'">
+    ⬅️ الرجوع إلى القائمة الرئيسية
+  </button>
+</body>
+</html>

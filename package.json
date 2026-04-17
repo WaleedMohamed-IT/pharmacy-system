@@ -1,0 +1,29 @@
+{
+  "name": "pharmacy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@hono/node-server": "^1.19.12",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "open": "^11.0.0",
+    "pg": "^8.20.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WaleedMohamed-IT/pharmacy-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WaleedMohamed-IT/pharmacy-system/issues"
+  },
+  "homepage": "https://github.com/WaleedMohamed-IT/pharmacy-system#readme"
+}
