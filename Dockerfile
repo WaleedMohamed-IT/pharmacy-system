@@ -1,22 +1,25 @@
+# استخدام صورة PHP الرسمية
 FROM php:8.1-cli
 
-# تثبيت المكتبات المطلوبة لـ GD
+# تثبيت المكتبات والامتدادات المطلوبة
 RUN apt-get update && apt-get install -y \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
     libpng-dev \
-    libwebp-dev \
-    zlib1g-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-install gd
+    libzip-dev \
+    unzip \
+    && docker-php-ext-install gd zip
 
-# تثبيت Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+# نسخ ملفات المشروع إلى داخل الحاوية
+COPY . /var/www/html
 
-WORKDIR /app
-COPY . /app
+# تحديد مجلد العمل
+WORKDIR /var/www/html
 
-# تثبيت الاعتمادات
+# تثبيت الاعتمادات عبر Composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && rm composer-setup.php
+
 RUN composer install --no-dev --optimize-autoloader
 
+# تشغيل التطبيق
 CMD ["php", "index.php"]
