@@ -1,20 +1,16 @@
 <?php
-// إعداد بيانات الاتصال بقاعدة البيانات
-$servername = "localhost";   // اسم السيرفر
-$username   = "root";        // اسم المستخدم
-$password   = "";            // كلمة المرور (افتراضيًا فاضية في XAMPP)
-$dbname     = "pharmacy";    // اسم قاعدة البيانات
+// قراءة بيانات الاتصال من متغيرات البيئة الخاصة بـ Railway
+$host = getenv("MYSQLHOST");
+$user = getenv("MYSQLUSER");
+$pass = getenv("MYSQLPASSWORD");
+$db   = getenv("MYSQLDATABASE");
+$port = getenv("MYSQLPORT");
 
 // إنشاء الاتصال
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = mysqli_connect($host, $user, $pass, $db, $port);
 
 // التحقق من الاتصال
 if (!$conn) {
-    die("<div style='color:red; font-weight:bold;'>
-        فشل الاتصال بقاعدة البيانات: " . mysqli_connect_error() . "
-    </div>");
-} else {
-    // لو الاتصال ناجح ممكن تطبع رسالة للتأكد أثناء التطوير
-    // echo "<div style='color:green;'>تم الاتصال بقاعدة البيانات بنجاح</div>";
+    die("Database connection failed: " . mysqli_connect_error());
 }
 ?>
